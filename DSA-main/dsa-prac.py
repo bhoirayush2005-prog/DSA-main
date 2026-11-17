@@ -34,3 +34,13 @@ class PriorityQueue:
             self.rear = new_node
 
         print("Patient added successfully")
+    # 2. Display Next Patient
+    def display_next(self):
+        if self.front is None:
+            print("Priority queue is empty")
+            return
+
+        print("\nNext Patient to be Treated:")
+        print("Patient ID:", self.front.pid)
+        print("Patient Name:", self.front.name)
+        print("Priority:", self.front.priority)
