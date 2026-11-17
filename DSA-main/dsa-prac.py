@@ -44,3 +44,17 @@ class PriorityQueue:
         print("Patient ID:", self.front.pid)
         print("Patient Name:", self.front.name)
         print("Priority:", self.front.priority)
+ # 3. Remove Patient (Dequeue)
+    def dequeue(self):
+        if self.front is None:
+            print("Priority queue is empty")
+            return
+
+        temp = self.front
+        self.front = self.front.next
+
+        if self.front is None:
+            self.rear = None
+
+        print("Patient treated and removed:", temp.name)
+
