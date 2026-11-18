@@ -43,3 +43,19 @@ def reverse_stack(s):
         s.push(q.dequeue())
 
 
+# Main Program
+s = Stack()
+
+n = int(input("Enter number of elements: "))
+
+for i in range(n):
+    x = int(input("Enter element: "))
+    s.push(x)
+
+print("Original Stack:")
+s.display()
+
+reverse_stack(s)
+
+print("Reversed Stack:")
+s.display()
