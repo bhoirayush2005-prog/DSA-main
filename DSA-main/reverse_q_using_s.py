@@ -1,73 +1,59 @@
-class Node:
-    def __init__(self, data):
-        self.data = data
-        self.next = None
-
-
 class Stack:
     def __init__(self):
-        self.top = None
+        self.stack = []
 
-    def is_empty(self):
-        return self.top is None
-
-    def push(self, data):
-        new_node = Node(data)
-        new_node.next = self.top
-        self.top = new_node
-        print("Element pushed successfully")
+    def push(self, x):
+        self.stack.append(x)
 
     def pop(self):
-        if self.is_empty():
-            print("Stack is empty")
-            return
+        if len(self.stack) == 0:
+            print("Stack is Empty")
+        else:
+            return self.stack.pop()
 
-        removed = self.top
-        self.top = self.top.next
-        print("Popped element:", removed.data)
+    def is_empty(self):
+        return len(self.stack) == 0
+class Queue:
+    def _init_(self):
+        self.queue = []
 
-    def peek(self):
-        if self.is_empty():
-            print("Stack is empty")
-            return
+    def enqueue(self, x):
+        self.queue.append(x)
 
-        print("Top element:", self.top.data)
+    def dequeue(self):
+        if len(self.queue) == 0:
+            print("Queue is Empty")
+        else:
+            return self.queue.pop(0)
 
     def display(self):
-        if self.is_empty():
-            print("Stack is empty")
-            return
+        print(self.queue)
+def reverse_queue(q):
+    s = Stack()
 
-        current = self.top
-        print("Stack elements:")
-        while current is not None:
-            print(current.data)
-            current = current.next
+    while not q_is_empty(q):
+        s.push(q.dequeue())
+
+    while not s.is_empty():
+        q.enqueue(s.pop())
 
 
-stack = Stack()
+def q_is_empty(q):
+    return len(q.queue) == 0
 
-while True:
-    print("\n===== STACK USING LINKED LIST =====")
-    print("1. Push")
-    print("2. Pop")
-    print("3. Peek")
-    print("4. Display")
-    print("5. Exit")
+# Main program
+q = Queue()
 
-    choice = int(input("Enter your choice: "))
+n = int(input("Enter number of elements: "))
 
-    if choice == 1:
-        value = int(input("Enter the element: "))
-        stack.push(value)
-    elif choice == 2:
-        stack.pop()
-    elif choice == 3:
-        stack.peek()
-    elif choice == 4:
-        stack.display()
-    elif choice == 5:
-        print("Thank you!")
-        break
-    else:
-        print("Invalid choice!")
+for i in range(n):
+    x = int(input("Enter element: "))
+    q.enqueue(x)
+
+print("Original Queue:")
+q.display()
+
+reverse_queue(q)
+
+print("Reversed Queue:")
+q.display()
