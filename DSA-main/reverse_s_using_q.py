@@ -33,3 +33,13 @@ class Queue:
         return len(self.queue) == 0
 
 
+def reverse_stack(s):
+    q = Queue()
+
+    while len(s.stack) > 0:
+        q.enqueue(s.pop())
+
+    while not q.is_empty():
+        s.push(q.dequeue())
+
+
