@@ -1,67 +1,73 @@
-
 class Node:
     def __init__(self, value):
-        self.data = value
         self.left = None
+        self.data = value
         self.right = None
 
 
-class BinarySearchTree:
+class BST:
     def __init__(self):
         self.root = None
 
-    # Insert a new node
     def insert(self, new_node):
         if self.root is None:
             self.root = new_node
             return
 
-        temp = self.root
+        else:
+            temp = self.root
 
-        while True:
-            if new_node.data < temp.data:
-                if temp.left is None:
-                    temp.left = new_node
-                    return
-                temp = temp.left
+            while True:
+                if new_node.data < temp.data:
 
-            else:
-                if temp.right is None:
-                    temp.right = new_node
-                    return
-                temp = temp.right
+                    if temp.left is None:
+                        temp.left = new_node
+                        return
+                    else:
+                        temp = temp.left
 
-    # Search for a value
-    def search(self, key):
-        temp = self.root
+                else:
+                    if temp.right is None:
+                        temp.right = new_node
+                        return
+                    else:
+                        temp = temp.right
 
-        while temp is not None:
-            if key == temp.data:
-                return temp
+    def inorder(self, temp):
+        if temp is not None:
+            self.inorder(temp.left)
+            print(temp.data, end=" ")
+            self.inorder(temp.right)
 
-            elif key < temp.data:
-                temp = temp.left
+    def preorder(self, temp):
+        if temp is not None:
+            print(temp.data, end=" ")
+            self.preorder(temp.left)
+            self.preorder(temp.right)
 
-            else:
-                temp = temp.right
-
-        return None
+    def postorder(self, temp):
+        if temp is not None:
+            self.postorder(temp.left)
+            self.postorder(temp.right)
+            print(temp.data, end=" ")
 
 
 # Main program
-bst = BinarySearchTree()
+tree = BST()
 
-bst.insert(Node(50))
-bst.insert(Node(30))
-bst.insert(Node(70))
-bst.insert(Node(20))
-bst.insert(Node(40))
-bst.insert(Node(60))
-bst.insert(Node(80))
+tree.insert(Node(50))
+tree.insert(Node(30))
+tree.insert(Node(70))
+tree.insert(Node(20))
+tree.insert(Node(40))
+tree.insert(Node(60))
+tree.insert(Node(80))
 
-result = bst.search(40)
+print("Inorder Traversal:")
+tree.inorder(tree.root)
 
-if result:
-    print("Element Found:", result.data)
-else:
-    print("Element Not Found")
+print("\nPreorder Traversal:")
+tree.preorder(tree.root)
+
+print("\nPostorder Traversal:")
+tree.postorder(tree.root)
