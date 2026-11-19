@@ -25,4 +25,13 @@ class binary_search_tree:
                     return
                 temp=temp.right
 
-    
+    def search(self,key):
+        temp=self.root
+        while temp is not None:
+            if key == temp.data:
+                return temp
+            if key < temp.data:
+                temp=temp.left
+            else:
+                temp=temp.right
+        return None
