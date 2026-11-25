@@ -40,7 +40,23 @@ class BST:
             print(rt.data, end=" ")
             self.preorder(rt.left)
             self.preorder(rt.right)
-    
+    def postorder(self, rt):
+        if rt is None:
+            return
+        else:
+            self.postorder(rt.left)
+            self.postorder(rt.right)
+            print(rt.data, end=" ")
+    def findminmax(self):
+        temp=self.root
+        while temp.left:
+            temp=temp.left
+        print("\nMin: ", temp.data)
+        temp=self.root
+        while temp.right:
+            temp=temp.right
+        print("\nMax: ", temp.data)
+
     
 
 b1=BST()
