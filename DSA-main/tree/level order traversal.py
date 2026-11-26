@@ -94,4 +94,59 @@ class BST:
             rt.right = self.del_node(rt.right, succ.data)
         return rt
 
+    def get_successor(self, rt):
+            if rt is None:
+                return None
+            temp=rt.right
+            while temp.left:
+                temp=temp.left
+            return temp
     
+    def level_order(self, rt):
+        if rt is None:
+            print("BST is empty")
+            return
+        arr = []
+        cnt = 0 #For counting visited node
+        arr.append(rt)
+        while cnt < len(arr):
+            temp = arr[cnt]
+            cnt += 1
+            print(temp.data, end=' ')
+            if temp.left:
+                arr.append(temp.left)
+            if temp.right:
+                arr.append(temp.right)
+                   
+
+        
+           
+
+    
+
+b1=BST()
+b1.insert(Node(100))
+b1.insert(Node(10))
+b1.insert(Node(450))
+b1.insert(Node(0))
+b1.insert(Node(65))
+b1.insert(Node(300))
+#print("\nInorder: ")
+#b1.inorder(b1.root)
+# print("\nNo of nodes: ",b1.cnt)
+# print("\nPreorder: ")
+# b1.preorder(b1.root)
+# print("\nPostorder: ")
+# b1.postorder(b1.root)
+# b1.findminmax()
+
+#b1.del_node(b1.root, 10)
+#print("\nInorder after deletion: ")
+#b1.inorder(b1.root)
+if b1.search(450):
+    print("\n Found the node")
+else:
+    print("\n not found the node")
+
+print("\n Level Order :- ")
+b1.level_order(b1.root)
