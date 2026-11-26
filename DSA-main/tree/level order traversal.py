@@ -60,4 +60,38 @@ class BST:
             temp=temp.right
         print("\nMax: ", temp.data)
 
-   
+    def search(self, key):
+        temp = self.root
+        while temp:
+            if temp.data == key:
+                return True
+            elif key < temp.data:
+                temp = temp.left
+            else:
+                temp = temp.right
+        return False
+    
+    def del_node(self, rt, val):
+        if rt is None:
+            return 
+
+        if val< rt.data:
+            rt.left = self.del_node(rt.left, val)
+        elif val > rt.data:
+            rt.right = self.del_node(rt.right, val)
+            
+        else:
+            if rt.left is None: # Node with right child only 
+                return rt.right
+            elif rt.right is None: # Node with left child only
+                return rt.left
+
+            #Node has both left and right child
+
+            succ = self.get_successor(rt)
+            rt.data = succ.data
+
+            rt.right = self.del_node(rt.right, succ.data)
+        return rt
+
+    
